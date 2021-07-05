@@ -6,10 +6,16 @@ $white: hsl(0, 0%, 100%);
 $white-2: hsla(0, 0%, 100%, 0.75);  //Main Paragraph Transparent white
 $white-3: hsla(0, 0%, 100%, 0.6);  //Stats Heading
 
+$card-width: 850px;
+$card-height: 300px;
 
-html, body {
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: pink;
     padding: 0px;
     margin: 0px;
+
 }
 
 span {
@@ -29,64 +35,27 @@ h2 {
     font-size: 1em;
 }
 
-.main-container {
+
+body, .main-container{
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.main-container {
+    height: 70%;
     width: 100%;
     background-color: $bkground;
+    
 }
 
-.card {
-   display: flex;
-   flex-flow: row wrap-reverse;
-   min-width: 375px;
-   color: $white;
-   background-color: $card-bkground;
-   border-radius: 10px;
-   >div{
-       width: 50%;
-   }
-}
 
-.first {
-    grid-area: maintext;
-}
 
-.second {
-    grid-area: subtext;
-    font-size: 0.7em;
-    align-self: start;
-    opacity: 0.5;
-    line-height: 1.5em;
-    padding-right: 2em;;
-}
+.left {
+    grid-area: info;
 
-.third-a, .third-b, .third-c {
-    line-height: 0.4em;
-    align-self: end;
-    p {
-	font-family: Lexend Deca;
-	font-size: 0.7em;
-	font-variant: small-caps;
-	font-weight: bold;
-	opacity: 0.5;
-    }
-}
-
-.third-a {
-    grid-area: data-1;
-}
-
-.third-b {
-    grid-area: data-2;
-}
-
-.third-c {
-    grid-area: data-3;
-}
-
-.left-box {
     display: grid;
     justify-content: center;
     align-content: center;
@@ -97,28 +66,69 @@ h2 {
 	[row2-start] "subtext subtext subtext" auto [row2-end]
 	[row4-start] "data-1 data-2 data-3" 80px [row4-end]
 	/ 1fr 1fr 1fr;
-}
-
-
-
-.right-box {
-    width: 40%;
-    background-color: $accent-2;
-    display: block;
-    position: relative;
-    border-radius: 0px 10px 10px 0px;
-
-    img {
-	display: block;
-	position: absolute;
-	top: 0px;
-	opacity: 0.40;
-	width: 100%;
-	height: 100%;
-	border-radius: 0px 10px 10px 0px;
+    .first {
+	grid-area: maintext;
     }
 
+    .second {
+	grid-area: subtext;
+	font-size: 0.75em;
+	align-self: start;
+	opacity: 0.5;
+	line-height: 1.5em;
+	padding-right: 2em;;
+    }
+
+    .third-a {
+	grid-area: data-1;
+    }
+
+    .third-b {
+	grid-area: data-2;
+    }
+
+    .third-c {
+	grid-area: data-3;
+    }
+
+    .third-a, .third-b, .third-c {
+	line-height: 0.4em;
+	align-self: end;
+	p {
+	    font-family: Lexend Deca;
+	    font-size: 0.7em;
+	    font-variant: small-caps;
+	    font-weight: bold;
+	    opacity: 0.5;
+	}
+    }
 }
+
+.right {
+    grid-area: photo;
+    background-image: url('images/image-header-desktop.jpg');
+    background-size: 100% 100%;
+    height: 100%;
+    >div {
+	background-color: $accent-2;
+	height: 100%;
+	opacity: 0.5;
+    }
+}
+
+
+
+.card {
+    width: $card-width;
+    background-color: $card-bkground;
+    color: $white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "info photo";
+}
+
 
 .attribution {
     font-size: 11px;
