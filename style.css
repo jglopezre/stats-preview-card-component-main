@@ -1,0 +1,151 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: pink;
+  padding: 0px;
+  margin: 0px;
+}
+
+span {
+  color: #aa5cdb;
+}
+
+h1, h2, p {
+  font-family: Inter;
+}
+
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  font-size: 1em;
+}
+
+body, .main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.main-container {
+  height: 100%;
+  width: 100%;
+  background-color: #090b1a;
+}
+
+.left {
+  border-radius: 10px 0px 0px 10px;
+  grid-area: info;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  margin: 2em 3em;
+  gap: 0px 0px;
+  grid-template: [row1-start] "maintext maintext maintext" 1fr [row1-end] [row2-start] "subtext subtext subtext" auto [row2-end] [row3-start] "data-1 data-2 data-3" 80px [row3-end]/1fr 1fr 1fr;
+}
+.left .first {
+  grid-area: maintext;
+}
+.left .second {
+  grid-area: subtext;
+  font-size: 0.75em;
+  align-self: start;
+  opacity: 0.5;
+  line-height: 1.5em;
+  padding-right: 2em;
+}
+.left .third-a {
+  grid-area: data-1;
+}
+.left .third-b {
+  grid-area: data-2;
+}
+.left .third-c {
+  grid-area: data-3;
+}
+.left .third-a, .left .third-b, .left .third-c {
+  line-height: 0.4em;
+  align-self: end;
+  font-variant: small-caps;
+}
+.left .third-a p, .left .third-b p, .left .third-c p {
+  font-family: Lexend Deca;
+  font-size: 0.7em;
+  font-weight: bold;
+  opacity: 0.5;
+}
+
+.right {
+  border-radius: 0px 10px 10px 0px;
+  grid-area: photo;
+  background-image: url("images/image-header-desktop.jpg");
+  background-size: 100% 100%;
+  height: 100%;
+}
+.right > div {
+  background-color: #3f0066;
+  border-radius: 0px 10px 10px 0px;
+  height: 100%;
+  opacity: 0.5;
+}
+
+.card {
+  border-radius: 10px;
+  width: 850px;
+  background-color: #1b1938;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "info photo";
+}
+
+@media only screen and (max-width: 850px) {
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .card {
+    height: 760px;
+    width: 300px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 30% auto;
+    grid-template-areas: "photo" "info";
+  }
+
+  .right {
+    background-image: url("images/image-header-mobile.jpg");
+    border-radius: 10px 10px 0px 0px;
+  }
+  .right > div {
+    border-radius: 10px 10px 0px 0px;
+  }
+
+  .left {
+    margin: 1em;
+    text-align: center;
+    grid-template: [row1-start] "maintext" auto [row1-end] [row2-start] "subtext" 2fr [row2-end] [row3-start] "data-1" 1fr [row3-end] [row4-start] "data-2" 1fr [row4-end] [row5-start] "data-3" 1fr [row5-end]/1fr;
+  }
+  .left .second {
+    font-size: 0.8em;
+    line-height: 2em;
+    padding: 0em 1.5em 0em 1.5em;
+  }
+  .left .third-a p, .left .third-b p, .left .third-c p {
+    font-size: 0.8em;
+    font-weight: bold;
+    opacity: 0.5;
+  }
+}
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: #3e52a3;
+}
+
+/*# sourceMappingURL=style.css.map */
