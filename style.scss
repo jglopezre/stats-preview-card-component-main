@@ -1,10 +1,12 @@
+@use "sass:math";
+
 $bkground: hsl(233, 47%, 7%);
 $card-bkground: hsl(244, 38%, 16%);
 $accent: hsl(277, 64%, 61%);
-$accent-2: hsl(277, 100%, 20%);
 $white: hsl(0, 0%, 100%);
 $white-2: hsla(0, 0%, 100%, 0.75);  //Main Paragraph Transparent white
 $white-3: hsla(0, 0%, 100%, 0.6);  //Stats Heading
+$footer-color-text: hsl(228, 45%, 44%);
 
 $card-width: 850px;
 $mobile-card-width: 300px;
@@ -12,13 +14,13 @@ $card-height: 300px;
 $mobile-card-height: 760px;
 $b-radius: 10px;
 
+
 body {
     height: 100vh;
-    width: 100vw;
-    background-color: pink;
+    width: 100%;
     padding: 0px;
     margin: 0px;
-
+    font-size: 16px;
 }
 
 span {
@@ -37,7 +39,7 @@ h2 {
     font-size: 1em;
 }
 
-body, .main-container{
+.main-container{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,6 +53,18 @@ body, .main-container{
     
 }
 
+.card {
+    border-radius: $b-radius;
+    width: $card-width;
+    background-color: $card-bkground;
+    color: $white;
+    display: grid;
+    grid-template-columns: auto (math.div($card-width, 1.9));
+    grid-template-rows: 1fr;
+    grid-template-areas:
+	"info photo";
+}
+
 .left {
     border-radius: $b-radius 0px 0px $b-radius;
     grid-area: info;
@@ -58,7 +72,7 @@ body, .main-container{
     justify-content: center;
     align-content: center;
     margin: 2em 3em;
-    gap: 0px 0px;
+    gap: 0px;
     grid-template:
 	[row1-start] "maintext maintext maintext" 1fr [row1-end]
 	[row2-start] "subtext subtext subtext" auto [row2-end]
@@ -105,75 +119,71 @@ body, .main-container{
 .right {
     border-radius: 0px $b-radius $b-radius 0px;
     grid-area: photo;
-    background-image: url('images/image-header-desktop.jpg');
-    background-size: 100% 100%;
-    height: 100%;
-    >div {
-	background-color: $accent-2;
-	border-radius: 0px $b-radius $b-radius 0px;
-	height: 100%;
-	opacity: 0.5;
+    background-color: $accent;
+    > picture {
+	mix-blend-mode: multiply;
+	> img {
+	    width: 100%;
+	    height: 100%;
+	    opacity: 0.8;
+	}
     }
 }
 
-.card {
-    border-radius: $b-radius;
-    width: $card-width;
-    background-color: $card-bkground;
-    color: $white;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas:
-	"info photo";
-}
-
-//mobile
+//mobile view
 
 @media only screen and (max-width: $card-width) {
 
     h2 {
 	font-size: 1.4em;
     }
-    .card {
-	height: $mobile-card-height;
-	width: $mobile-card-width;
-	grid-template-columns: 1fr;
-	grid-template-rows: 30% auto;
-	grid-template-areas:
-	    "photo"
-	    "info";
-    }
 
-    .right {
-	background-image: url('images/image-header-mobile.jpg');
-	border-radius: $b-radius $b-radius 0px 0px;
-	>div {
+    .main-container {
+	padding: {
+	    top: 7em;
+	    bottom: 7em;
+	}
+	
+	.card {
+	    height: $mobile-card-height;
+	    width: $mobile-card-width;
+	    grid-template-columns: 1fr;
+	    grid-template-rows: 30% auto;
+	    grid-template-areas:
+		"photo"
+		"info";
+	}
+
+	.right {
 	    border-radius: $b-radius $b-radius 0px 0px;
-	}
-    }
 
-    .left {
-	margin: 1em;
-	text-align: center;
-	grid-template:
-	    [row1-start] "maintext" auto [row1-end]
-	    [row2-start] "subtext" 2fr [row2-end]
-	    [row3-start] "data-1" 1fr [row3-end]
-	    [row4-start] "data-2" 1fr [row4-end]
-	    [row5-start] "data-3" 1fr [row5-end]
-	    / 1fr;
-
-	.second {
-	    font-size: 0.8em;
-	    line-height: 2em;
-	    padding: 0em 1.5em 0em 1.5em;
+	    img {
+		border-radius: $b-radius $b-radius 0px 0px;
+	    }
 	}
-	.third-a, .third-b, .third-c {
-	    p {
+
+	.left {
+	    margin: 1em;
+	    text-align: center;
+	    grid-template:
+		[row1-start] "maintext" auto [row1-end]
+		[row2-start] "subtext" 2fr [row2-end]
+		[row3-start] "data-1" 1fr [row3-end]
+		[row4-start] "data-2" 1fr [row4-end]
+		[row5-start] "data-3" 1fr [row5-end]
+		/ 1fr;
+
+	    .second {
 		font-size: 0.8em;
-		font-weight: bold;
-		opacity: 0.5;
+		line-height: 2em;
+		padding: 0em 1.5em 0em 1.5em;
+	    }
+	    .third-a, .third-b, .third-c {
+		p {
+		    font-size: 0.8em;
+		    font-weight: bold;
+		    opacity: 0.5;
+		}
 	    }
 	}
     }
@@ -184,5 +194,5 @@ body, .main-container{
     text-align: center;
 }
 .attribution a {
-    color: hsl(228, 45%, 44%);
+    color: $footer-color-text;
 }
